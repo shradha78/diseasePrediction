@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <h1>HOSPITAL RECOMMENDATION</h1>
+
+  <!--CSS stylesheet-->
+  <style>
+    .box {
+      color: #fff;
+      padding: 20px;
+      display: none;
+      margin-top: 20px;
+    }
+
+    .red {
+      background: #00d1b2;
+      display : flex;
+      flex-direction: column;
+    }
+
+    .green {
+      background: #00d1b2;
+      display : flex;
+      flex-direction: column;
+    }
+
+    .blue {
+      background:#00d1b2;
+      display : flex;
+      flex-direction: column;
+    }
+    .yellow {
+      background: #00d1b2;
+      display : flex;
+      flex-direction: column;
+    }
+    .pink {
+      background: #00d1b2;
+      display : flex;
+      flex-direction: column;
+    }
+  </style>
+  <!--importing jquery cdn-->
+  <script src=
+                  "https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+
+  <script>
+    // jQuery functions to hide and show the div
+    $(document).ready(function () {
+      $("select").change(function () {
+        $(this).find("option:selected")
+                .each(function () {
+                  var optionValue = $(this).attr("value");
+                  if (optionValue) {
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                  } else {
+                    $(".box").hide();
+                  }
+                });
+      }).change();
+    });
+  </script>
+</head>
+
+<body>
+<div>
+  <!--dropdown list options-->
+  <select>
+    <option>Choose State</option>
+    <option value="red">Andhra Pradesh</option>
+    <option value="green">Uttar Pradesh</option>
+    <option value="blue">Delhi</option>
+    <option value="yellow">Gujrat</option>
+    <option value="pink">Punjab</option>
+  </select>
+</div>
+<!--divs that hide and show-->
+<div class="red box">
+  <a href="https://www.clinicspots.com/hospital/apollo-health-city">Apollo Hospital</a>
+
+  <a href="https://www.clinicspots.com/hospital/seven-hills-hospitals">Seven Hills Hospital</a>
+
+  <a href="https://www.clinicspots.com/hospital/srikara-hospitals-5">Srikara Hospital</a>
+
+  <a href="https://www.clinicspots.com/hospital/mycure-hospital-2">Mycure Hospital</a>
+
+  <a href="https://www.clinicspots.com/hospital/seven-hills-hospitals"></a>
+</div>
+
+<div class="green box">
+  <a href ="https://www.clinicspots.com/hospital/max-super-speciality-hospital-2">Max Super Speciality Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/yashoda-super-speciality-hospital">Yashoda Super Speciality Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/fortis-hospital-noida"> Fortis Hospital Noida</a>
+  <a href ="https://www.clinicspots.com/hospital/apollo-hospitals-5">Apollo Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/jaypee-hospital">Jaypee Hospital</a>
+</div>
+<div class="blue box">
+ <a href = " https://www.clinicspots.com/hospital/sir-ganga-ram-hospital-2">Sir Ganga Ram Hospital</a>
+  <a href = "https://www.clinicspots.com/hospital/indraprastha-apollo-hospitals">Indraprastha Apollo Hospital</a>
+  <a href = "https://www.clinicspots.com/hospital/blk-super-speciality-hospital-2">Blk Super Speciality Hospital</a>
+  <a href = "https://www.clinicspots.com/hospital/fortis-la-femme-6">Fortis La Femme Hospital</a>
+  <a href="https://www.clinicspots.com/hospital/primus-super-speciality-hospital">Primus Super Speciality Hospital</a>
+</div>
+<div class="yellow box">
+  <a href ="https://www.clinicspots.com/hospital/apollo-hospital-4">Apollo Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/cims-hospital">CIMS Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/sterling-hospital-2">Sterling Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/hcg-multi-specialty-hospital">HCG Multi Speciality Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/udhna-hospital-pvt-ltd">Udhna Hospital</a>
+</div>
+<div class="pink box">
+  <a href ="https://www.clinicspots.com/hospital/fortis-hospital-mohali">Fortis Hospital Mohali</a>
+  <a href ="https://www.clinicspots.com/hospital/fortis-hospital-6">Fortis Hospital </a>
+  <a href ="https://www.clinicspots.com/hospital/max-superspeciality-hospital-4">Max Super Speciality Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/indus-international-hospital">Indus International Hospital</a>
+  <a href ="https://www.clinicspots.com/hospital/medicover-fertility-ludhiana">Medicover Fertility Hospital</a>
+</div>
+
+
+</body>
+
+</html>
+
+
+{% endblock %}

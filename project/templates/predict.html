@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <title>DISEASE PREDICTION</title>
+    <style type="text/css">
+        .container-bg{
+            color:pink;
+        }
+        .jumbotron{
+            background-color:#00d1b2;
+        }
+        p{
+            color:white;}
+
+        form-group{
+            color:white}
+       /* .topnav {
+            overflow: hidden;
+            background-color: #e9e9e9;
+        }*/
+
+/*
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        !* Change the color of links on hover *!
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+
+        !* Style the search box inside the navigation bar *!
+        .topnav input[type=text] {
+            float: right;
+            padding: 6px;
+            border: none;
+            margin-top: 8px;
+            margin-right: 16px;
+            font-size: 17px;
+        }
+
+
+        @media screen and (max-width: 600px) {
+            .topnav a, .topnav input[type=text] {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+            .topnav input[type=text] {
+                border: 1px solid #ccc;
+            }
+        }
+
+*/
+
+
+    </style>
+</head>
+
+<body style="background-color:white">
+<!--<div class="topnav">
+    <input type="text" placeholder="Search..">
+</div>-->
+<div class="container-bg">
+    <div class="container main" >
+        <div class="jumbotron" id="holder">
+            <br>
+            <center><b><h2   style="color:white";>{{ prediction_text}}</h2></b></center>
+            <br>
+            <br>
+            <center> <b><h1 style="color:white" class='main_heading' style="font-family:Copperplate" font-size:200%;> DISEASE PREDICTION MODEL</h1></b></center>
+
+            <br>
+            <div class="instructions">
+                <h2 style="color:white" style="font-family:Times New Roman" font-size:50%> INSTRUCTIONS: </h2>
+                <p Style="font-family:Times New Roman" font-size:50%>Please enter values for the following fields and click predict</p>
+
+            </div>
+
+            <form id="form" class="form-horizontal" action="/predict_api"method="post">
+                <label for="quantity" style="color:white" >Quantity (between 0 and 1):</label>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>shortness of breath</p>
+                        <input  class="form-control" type="number" name="shortness of breath" placeholder="shortness of breath" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dizziness</p>
+                        <input  class="form-control" type="number" name="dizziness" placeholder="dizziness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>asthenia</p>
+                        <input  class="form-control" type="number" name="asthenia" placeholder="asthenia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fall</p>
+                        <input  class="form-control" type="number" name="fall" placeholder="fall" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>syncope</p>
+                        <input  class="form-control" type="number" name="syncope" placeholder="syncope" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>vertigo</p>
+                        <input  class="form-control" type="number" name="vertigo" placeholder="vertigo" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sweat</p>
+                        <input  class="form-control" type="number" name="sweat" placeholder="sweat" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sweating increased</p>
+                        <input  class="form-control" type="number" name="sweating increased" placeholder="sweating increased" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>palpitation</p>
+                        <input  class="form-control" type="number" name="palpitation" placeholder="palpitation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nausea</p>
+                        <input  class="form-control" type="number" name="nausea" placeholder="nausea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nausea</p>
+                        <input  class="form-control" type="number" name="addiction" placeholder="addiction" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>angina pectoris</p>
+                        <input  class="form-control" type="number" name="angina pectoris" placeholder="angina pectoris" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pressure chest</p>
+                        <input  class="form-control" type="number" name="pressure chest" placeholder="pressure chest" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>polyuria</p>
+                        <input  class="form-control" type="number" name="polyuria" placeholder="polyuria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>polydypsia</p>
+                        <input  class="form-control" type="number" name="polydypsia" placeholder="polydypsia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain chest</p>
+                        <input  class="form-control" type="number" name="pain chest" placeholder="pain chest" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>orthopnea</p>
+                        <input  class="form-control" type="number" name="orthopnea" placeholder="orthopnea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rale</p>
+                        <input  class="form-control" type="number" name="rale" placeholder="rale" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unresponsiveness</p>
+                        <input  class="form-control" type="number" name="unresponsiveness" placeholder="unresponsiveness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mental status changes</p>
+                        <input  class="form-control" type="number" name="mental status changes" placeholder="mental status changes" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>vomiting</p>
+                        <input  class="form-control" type="number" name="vomiting" placeholder="vomiting" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>labored breathing</p>
+                        <input  class="form-control" type="number" name="labored breathing" placeholder="labored breathing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>feeling suicidal</p>
+                        <input  class="form-control" type="number" name="feeling suicidal" placeholder="feeling suicidal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>suicidal</p>
+                        <input  class="form-control" type="number" name="suicidal" placeholder="suicidal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hallucinations auditory</p>
+                        <input  class="form-control" type="number" name="hallucinations auditory" placeholder="hallucinations auditory" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>feeling hopeless</p>
+                        <input  class="form-control" type="number" name="feeling hopeless" placeholder="feeling hopeless" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>weepiness</p>
+                        <input  class="form-control" type="number" name="weepiness" placeholder="weepiness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sleeplessness</p>
+                        <input  class="form-control" type="number" name="sleeplessness" placeholder="sleeplessness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>motor retardation</p>
+                        <input  class="form-control" type="number" name="motor retardation" placeholder="motor retardation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>irritable mood</p>
+                        <input  class="form-control" type="number" name="irritable mood" placeholder="irritable mood" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>blackout</p>
+                        <input  class="form-control" type="number" name="blackout" placeholder="blackout" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mood depressed</p>
+                        <input  class="form-control" type="number" name="mood depressed" placeholder="mood depressed" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hallucinations visual</p>
+                        <input  class="form-control" type="number" name="hallucinations visual" placeholder="hallucinations visual" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>worry</p>
+                        <input  class="form-control" type="number" name="worry" placeholder="worry" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>agitation</p>
+                        <input  class="form-control" type="number" name="agitation" placeholder="agitation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tremor</p>
+                        <input  class="form-control" type="number" name="tremor" placeholder="tremor" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>intoxication</p>
+                        <input  class="form-control" type="number" name="intoxication" placeholder="intoxication" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>verbal auditory hallucinations</p>
+                        <input  class="form-control" type="number" name="verbal auditory hallucinations" placeholder="verbal auditory hallucinations" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>energy increased</p>
+                        <input  class="form-control" type="number" name="energy increased" placeholder="energy increased" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>difficulty</p>
+                        <input  class="form-control" type="number" name="difficulty" placeholder="difficulty" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nightmare</p>
+                        <input  class="form-control" type="number" name="nightmare" placeholder="nightmare" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unable to concentrate</p>
+                        <input  class="form-control" type="number" name="unable to concentrate" placeholder="unable to concentrate" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>homelessness</p>
+                        <input  class="form-control" type="number" name="homelessness" placeholder="homelessness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypokinesia</p>
+                        <input  class="form-control" type="number" name="hypokinesia" placeholder="hypokinesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dyspnea on exertion</p>
+                        <input  class="form-control" type="number" name="dyspnea on exertion" placeholder="dyspnea on exertion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>chest tightness</p>
+                        <input  class="form-control" type="number" name="chest tightness" placeholder="chest tightness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cough</p>
+                        <input  class="form-control" type="number" name="cough" placeholder="cough" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fever</p>
+                        <input  class="form-control" type="number" name="fever" placeholder="fever" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>decreased translucency</p>
+                        <input  class="form-control" type="number" name="decreased translucency" placeholder="decreased translucency" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>productive cough</p>
+                        <input  class="form-control" type="number" name="productive cough" placeholder="productive cough" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pleuritic pain</p>
+                        <input  class="form-control" type="number" name="pleuritic pain" placeholder="pleuritic pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>yellow sputum</p>
+                        <input  class="form-control" type="number" name="yellow sputum" placeholder="yellow sputum" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>breath sounds decreased</p>
+                        <input  class="form-control" type="number" name="breath sounds decreased" placeholder="breath sounds decreased" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>chill</p>
+                        <input  class="form-control" type="number" name="chill" placeholder="chill" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rhonchus</p>
+                        <input  class="form-control" type="number" name="rhonchus" placeholder="rhonchus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>green sputum</p>
+                        <input  class="form-control" type="number" name="green sputum" placeholder="green sputum" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>non-productive cough</p>
+                        <input  class="form-control" type="number" name="non-productive cough" placeholder="non-productive cough" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>wheezing</p>
+                        <input  class="form-control" type="number" name="wheezing" placeholder="wheezing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>haemoptysis</p>
+                        <input  class="form-control" type="number" name="haemoptysis" placeholder="haemoptysis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>distress respiratory</p>
+                        <input  class="form-control" type="number" name="distress respiratory" placeholder="distress respiratory" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tachypnea</p>
+                        <input  class="form-control" type="number" name="tachypnea" placeholder="tachypnea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>malaise</p>
+                        <input  class="form-control" type="number" name="malaise" placeholder="malaise" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>night sweat</p>
+                        <input  class="form-control" type="number" name="night sweat" placeholder="night sweat" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>jugular venous distention</p>
+                        <input  class="form-control" type="number" name="jugular venous distention" placeholder="jugular venous distention" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dyspnea</p>
+                        <input  class="form-control" type="number" name="dyspnea" placeholder="dyspnea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dysarthria</p>
+                        <input  class="form-control" type="number" name="dysarthria" placeholder="dysarthria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>speech slurred</p>
+                        <input  class="form-control" type="number" name="speech slurred" placeholder="speech slurred" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>facial paresis</p>
+                        <input  class="form-control" type="number" name="facial paresis" placeholder="facial paresis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hemiplegia</p>
+                        <input  class="form-control" type="number" name="hemiplegia" placeholder="hemiplegia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>seizure</p>
+                        <input  class="form-control" type="number" name="seizure" placeholder="seizure" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>numbness</p>
+                        <input  class="form-control" type="number" name="numbness" placeholder="numbness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>symptom aggravating factors</p>
+                        <input  class="form-control" type="number" name="symptom aggravating factors" placeholder="symptom aggravating factors" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>st segment elevation</p>
+                        <input  class="form-control" type="number" name="st segment elevation" placeholder="st segment elevation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>st segment depression</p>
+                        <input  class="form-control" type="number" name="st segment depression" placeholder="st segment depression" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>t wave inverted</p>
+                        <input  class="form-control" type="number" name="t wave inverted" placeholder="t wave inverted" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>presence of q wave</p>
+                        <input  class="form-control" type="number" name="presence of q wave" placeholder="presence of q wave" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>chest discomfort</p>
+                        <input  class="form-control" type="number" name="chest discomfort" placeholder="chest discomfort" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bradycardia</p>
+                        <input  class="form-control" type="number" name="bradycardia" placeholder="bradycardia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain</p>
+                        <input  class="form-control" type="number" name="pain" placeholder="pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nonsmoker</p>
+                        <input  class="form-control" type="number" name="nonsmoker" placeholder="nonsmoker" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>erythema</p>
+                        <input  class="form-control" type="number" name="erythema" placeholder="erythema" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hepatosplenomegaly</p>
+                        <input  class="form-control" type="number" name="hepatosplenomegaly" placeholder="hepatosplenomegaly" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pruritus</p>
+                        <input  class="form-control" type="number" name="pruritus" placeholder="pruritus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>diarrhea</p>
+                        <input  class="form-control" type="number" name="diarrhea" placeholder="diarrhea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abscess bacterial</p>
+                        <input  class="form-control" type="number" name="abscess bacterial" placeholder="abscess bacterial" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>swelling</p>
+                        <input  class="form-control" type="number" name="swelling" placeholder="swelling" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>apyrexial</p>
+                        <input  class="form-control" type="number" name="apyrexial" placeholder="apyrexial" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dysuria</p>
+                        <input  class="form-control" type="number" name="dysuria" placeholder="dysuria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hematuria</p>
+                        <input  class="form-control" type="number" name="hematuria" placeholder="hematuria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>renal angle tenderness</p>
+                        <input  class="form-control" type="number" name="renal angle tenderness" placeholder="renal angle tenderness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lethargy</p>
+                        <input  class="form-control" type="number" name="lethargy" placeholder="lethargy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyponatremia</p>
+                        <input  class="form-control" type="number" name="hyponatremia" placeholder="hyponatremia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hemodynamically stable</p>
+                        <input  class="form-control" type="number" name="hemodynamically stable" placeholder="hemodynamically stable" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>difficulty passing urine</p>
+                        <input  class="form-control" type="number" name="difficulty passing urine" placeholder="difficulty passing urine" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>consciousness clear</p>
+                        <input  class="form-control" type="number" name="consciousness clear" placeholder="consciousness clear" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>guaiac positive</p>
+                        <input  class="form-control" type="number" name="guaiac positive" placeholder="guaiac positive" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>monoclonal</p>
+                        <input  class="form-control" type="number" name="monoclonal" placeholder="monoclonal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>ecchymosis</p>
+                        <input  class="form-control" type="number" name="ecchymosis" placeholder="ecchymosis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tumor cell invasion</p>
+                        <input  class="form-control" type="number" name="tumor cell invasion" placeholder="tumor cell invasion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>haemorrhage</p>
+                        <input  class="form-control" type="number" name="haemorrhage" placeholder="haemorrhage" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pallor</p>
+                        <input  class="form-control" type="number" name="pallor" placeholder="pallor" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fatigue</p>
+                        <input  class="form-control" type="number" name="fatigue" placeholder="fatigue" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>heme positive</p>
+                        <input  class="form-control" type="number" name="heme positive" placeholder="heme positive" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain back</p>
+                        <input  class="form-control" type="number" name="pain back" placeholder="pain back" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>orthostasis</p>
+                        <input  class="form-control" type="number" name="orthostasis" placeholder="orthostasis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>arthralgia</p>
+                        <input  class="form-control" type="number" name="arthralgia" placeholder="arthralgia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>transaminitis</p>
+                        <input  class="form-control" type="number" name="transaminitis" placeholder="transaminitis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sputum purulent</p>
+                        <input  class="form-control" type="number" name="sputum purulent" placeholder="sputum purulent" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypoxemia</p>
+                        <input  class="form-control" type="number" name="hypoxemia" placeholder="hypoxemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypercapnia</p>
+                        <input  class="form-control" type="number" name="hypercapnia" placeholder="hypercapnia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>patient non compliance</p>
+                        <input  class="form-control" type="number" name="patient non compliance" placeholder="patient non compliance" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unconscious state</p>
+                        <input  class="form-control" type="number" name="unconscious state" placeholder="unconscious state" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bedridden</p>
+                        <input  class="form-control" type="number" name="bedridden" placeholder="bedridden" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abdominal tenderness</p>
+                        <input  class="form-control" type="number" name="abdominal tenderness" placeholder="abdominal tenderness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unsteady gait</p>
+                        <input  class="form-control" type="number" name="unsteady gait" placeholder="unsteady gait" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyperkalemia</p>
+                        <input  class="form-control" type="number" name="hyperkalemia" placeholder="hyperkalemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>urgency of micturition</p>
+                        <input  class="form-control" type="number" name="urgency of micturition" placeholder="urgency of micturition" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>ascites</p>
+                        <input  class="form-control" type="number" name="ascites" placeholder="ascites" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypotension</p>
+                        <input  class="form-control" type="number" name="hypotension" placeholder="hypotension" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>enuresis</p>
+                        <input  class="form-control" type="number" name="enuresis" placeholder="enuresis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>asterixis</p>
+                        <input  class="form-control" type="number" name="asterixis" placeholder="asterixis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>muscle twitch</p>
+                        <input  class="form-control" type="number" name="muscle twitch" placeholder="muscle twitch" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sleepy</p>
+                        <input  class="form-control" type="number" name="sleepy" placeholder="sleepy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>headache</p>
+                        <input  class="form-control" type="number" name="headache" placeholder="headache" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lightheadedness</p>
+                        <input  class="form-control" type="number" name="lightheadedness" placeholder="lightheadedness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>food intolerance</p>
+                        <input  class="form-control" type="number" name="food intolerance" placeholder="food intolerance" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>numbness of hand</p>
+                        <input  class="form-control" type="number" name="numbness of hand" placeholder="numbness of hand" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>general discomfort</p>
+                        <input  class="form-control" type="number" name="general discomfort" placeholder="general discomfort" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>drowsiness</p>
+                        <input  class="form-control" type="number" name="drowsiness" placeholder="drowsiness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stiffness</p>
+                        <input  class="form-control" type="number" name="stiffness" placeholder="stiffness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>prostatism</p>
+                        <input  class="form-control" type="number" name="prostatism" placeholder="prostatism" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>weight gain</p>
+                        <input  class="form-control" type="number" name="weight gain" placeholder="weight gain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tired</p>
+                        <input  class="form-control" type="number" name="tired" placeholder="tired" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mass of body structure</p>
+                        <input  class="form-control" type="number" name="mass of body structure" placeholder="mass of body structure" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>has religious belief</p>
+                        <input  class="form-control" type="number" name="has religious belief" placeholder="has religious belief" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nervousness</p>
+                        <input  class="form-control" type="number" name="nervousness" placeholder="nervousness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>formication</p>
+                        <input  class="form-control" type="number" name="formication" placeholder="formication" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hot flush</p>
+                        <input  class="form-control" type="number" name="hot flush" placeholder="hot flush" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lesion</p>
+                        <input  class="form-control" type="number" name="lesion" placeholder="lesion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cushingoid facies</p>
+                        <input  class="form-control" type="number" name="cushingoid facies" placeholder="cushingoid facies" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cushingoid habitus</p>
+                        <input  class="form-control" type="number" name="cushingoid habitus" placeholder="cushingoid habitus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>emphysematous change</p>
+                        <input  class="form-control" type="number" name="emphysematous change" placeholder="emphysematous change" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>decreased body weight</p>
+                        <input  class="form-control" type="number" name="decreased body weight" placeholder="decreased body weight" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hoarseness</p>
+                        <input  class="form-control" type="number" name="hoarseness" placeholder="hoarseness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>thicken</p>
+                        <input  class="form-control" type="number" name="thicken" placeholder="thicken" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>spontaneous rupture of membranes</p>
+                        <input  class="form-control" type="number" name="spontaneous rupture of membranes" placeholder="spontaneous rupture of membranes" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>muscle hypotonia</p>
+                        <input  class="form-control" type="number" name="muscle hypotonia" placeholder="muscle hypotonia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypotonic</p>
+                        <input  class="form-control" type="number" name="hypotonic" placeholder="hypotonic" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>redness</p>
+                        <input  class="form-control" type="number" name="redness" placeholder="redness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypesthesia</p>
+                        <input  class="form-control" type="number" name="hypesthesia" placeholder="hypesthesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyperacusis</p>
+                        <input  class="form-control" type="number" name="hyperacusis" placeholder="hyperacusis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>scratch marks</p>
+                        <input  class="form-control" type="number" name="scratch marks" placeholder="scratch marks" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sore to touch</p>
+                        <input  class="form-control" type="number" name="sore to touch" placeholder="sore to touch" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>burning sensation</p>
+                        <input  class="form-control" type="number" name="burning sensation" placeholder="burning sensation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>satiety early</p>
+                        <input  class="form-control" type="number" name="satiety early" placeholder="satiety early" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>throbbing sensation quality</p>
+                        <input  class="form-control" type="number" name="throbbing sensation quality" placeholder="throbbing sensation quality" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sensory discomfort</p>
+                        <input  class="form-control" type="number" name="sensory discomfort" placeholder="sensory discomfort" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>constipation</p>
+                        <input  class="form-control" type="number" name="constipation" placeholder="constipation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain abdominal</p>
+                        <input  class="form-control" type="number" name="pain abdominal" placeholder="pain abdominal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>heartburn</p>
+                        <input  class="form-control" type="number" name="heartburn" placeholder="heartburn" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>breech presentation</p>
+                        <input  class="form-control" type="number" name="breech presentation" placeholder="breech presentation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cyanosis</p>
+                        <input  class="form-control" type="number" name="cyanosis" placeholder="cyanosis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain in lower limb</p>
+                        <input  class="form-control" type="number" name="pain in lower limb" placeholder="pain in lower limb" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cardiomegaly</p>
+                        <input  class="form-control" type="number" name="cardiomegaly" placeholder="cardiomegaly" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>clonus</p>
+                        <input  class="form-control" type="number" name="clonus" placeholder="clonus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unwell</p>
+                        <input  class="form-control" type="number" name="unwell" placeholder="unwell" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>anorexia</p>
+                        <input  class="form-control" type="number" name="anorexia" placeholder="anorexia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>history of - blackout</p>
+                        <input  class="form-control" type="number" name="history of - blackout" placeholder="history of - blackout" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>anosmia</p>
+                        <input  class="form-control" type="number" name="anosmia" placeholder="anosmia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>metastatic lesion</p>
+                        <input  class="form-control" type="number" name="metastatic lesion" placeholder="metastatic lesion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hemianopsia homonymous</p>
+                        <input  class="form-control" type="number" name="hemianopsia homonymous" placeholder="hemianopsia homonymous" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hematocrit decreased</p>
+                        <input  class="form-control" type="number" name="hematocrit decreased" placeholder="hematocrit decreased" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>neck stiffness</p>
+                        <input  class="form-control" type="number" name="neck stiffness" placeholder="neck stiffness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cicatrisation</p>
+                        <input  class="form-control" type="number" name="cicatrisation" placeholder="cicatrisation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypometabolism</p>
+                        <input  class="form-control" type="number" name="hypometabolism" placeholder="hypometabolism" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>aura</p>
+                        <input  class="form-control" type="number" name="aura" placeholder="aura" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>myoclonus</p>
+                        <input  class="form-control" type="number" name="myoclonus" placeholder="myoclonus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>gurgle</p>
+                        <input  class="form-control" type="number" name="gurgle" placeholder="gurgle" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>wheelchair bound</p>
+                        <input  class="form-control" type="number" name="wheelchair bound" placeholder="wheelchair bound" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>left atrial hypertrophy</p>
+                        <input  class="form-control" type="number" name="left atrial hypertrophy" placeholder="left atrial hypertrophy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>oliguria</p>
+                        <input  class="form-control" type="number" name="oliguria" placeholder="oliguria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>catatonia</p>
+                        <input  class="form-control" type="number" name="catatonia" placeholder="catatonia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>unhappy</p>
+                        <input  class="form-control" type="number" name="unhappy" placeholder="unhappy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>paresthesia</p>
+                        <input  class="form-control" type="number" name="paresthesia" placeholder="paresthesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>gravida 0</p>
+                        <input  class="form-control" type="number" name="gravida 0" placeholder="gravida 0" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lung nodule</p>
+                        <input  class="form-control" type="number" name="lung nodule" placeholder="lung nodule" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>distended abdomen</p>
+                        <input  class="form-control" type="number" name="distended abdomen" placeholder="distended abdomen" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>ache</p>
+                        <input  class="form-control" type="number" name="ache" placeholder="ache" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>macerated skin</p>
+                        <input  class="form-control" type="number" name="macerated skin" placeholder="macerated skin" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>heavy feeling</p>
+                        <input  class="form-control" type="number" name="heavy feeling" placeholder="heavy feeling" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rest pain</p>
+                        <input  class="form-control" type="number" name="rest pain" placeholder="rest pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sinus rhythm</p>
+                        <input  class="form-control" type="number" name="sinus rhythm" placeholder="sinus rhythm" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>withdraw</p>
+                        <input  class="form-control" type="number" name="withdraw" placeholder="withdraw" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>behavior hyperactive</p>
+                        <input  class="form-control" type="number" name="behavior hyperactive" placeholder="behavior hyperactive" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>terrify</p>
+                        <input  class="form-control" type="number" name="terrify" placeholder="terrify" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>photopsia</p>
+                        <input  class="form-control" type="number" name="photopsia" placeholder="photopsia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>giddy mood</p>
+                        <input  class="form-control" type="number" name="giddy mood" placeholder="giddy mood" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>disturbed family</p>
+                        <input  class="form-control" type="number" name="disturbed family" placeholder="disturbed family" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypersomnia</p>
+                        <input  class="form-control" type="number" name="hypersomnia" placeholder="hypersomnia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyperhidrosis disorder</p>
+                        <input  class="form-control" type="number" name="hyperhidrosis disorder" placeholder="hyperhidrosis disorder" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mydriasis</p>
+                        <input  class="form-control" type="number" name="mydriasis" placeholder="mydriasis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>extrapyramidal sign</p>
+                        <input  class="form-control" type="number" name="extrapyramidal sign" placeholder="extrapyramidal sign" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>loose associations</p>
+                        <input  class="form-control" type="number" name="loose associations" placeholder="loose associations" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>exhaustion</p>
+                        <input  class="form-control" type="number" name="exhaustion" placeholder="exhaustion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>snore</p>
+                        <input  class="form-control" type="number" name="snore" placeholder="snore" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>r wave feature</p>
+                        <input  class="form-control" type="number" name="r wave feature" placeholder="r wave feature" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>overweight</p>
+                        <input  class="form-control" type="number" name="overweight" placeholder="overweight" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>systolic murmur</p>
+                        <input  class="form-control" type="number" name="systolic murmur" placeholder="systolic murmur" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>asymptomatic</p>
+                        <input  class="form-control" type="number" name="asymptomatic" placeholder="asymptomatic" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>splenomegaly</p>
+                        <input  class="form-control" type="number" name="splenomegaly" placeholder="splenomegaly" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bleeding of vagina</p>
+                        <input  class="form-control" type="number" name="bleeding of vagina" placeholder="bleeding of vagina" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>macule</p>
+                        <input  class="form-control" type="number" name="macule" placeholder="macule" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>photophobia</p>
+                        <input  class="form-control" type="number" name="photophobia" placeholder="photophobia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>painful swallowing</p>
+                        <input  class="form-control" type="number" name="painful swallowing" placeholder="painful swallowing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cachexia</p>
+                        <input  class="form-control" type="number" name="cachexia" placeholder="cachexia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypocalcemia result</p>
+                        <input  class="form-control" type="number" name="hypocalcemia result" placeholder="hypocalcemia result" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypothermia, natural</p>
+                        <input  class="form-control" type="number" name="hypothermia, natural" placeholder="hypothermia, natural" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>atypia</p>
+                        <input  class="form-control" type="number" name="atypia" placeholder="atypia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>general unsteadiness</p>
+                        <input  class="form-control" type="number" name="general unsteadiness" placeholder="general unsteadiness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>throat sore</p>
+                        <input  class="form-control" type="number" name="throat sore" placeholder="throat sore" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>snuffle</p>
+                        <input  class="form-control" type="number" name="snuffle" placeholder="snuffle" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hacking cough</p>
+                        <input  class="form-control" type="number" name="hacking cough" placeholder="hacking cough" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stridor</p>
+                        <input  class="form-control" type="number" name="stridor" placeholder="stridor" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>paresis</p>
+                        <input  class="form-control" type="number" name="paresis" placeholder="paresis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>aphagia</p>
+                        <input  class="form-control" type="number" name="aphagia" placeholder="aphagia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>focal seizures</p>
+                        <input  class="form-control" type="number" name="focal seizures" placeholder="focal seizures" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abnormal sensation</p>
+                        <input  class="form-control" type="number" name="abnormal sensation" placeholder="abnormal sensation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stupor</p>
+                        <input  class="form-control" type="number" name="stupor" placeholder="stupor" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fremitus</p>
+                        <input  class="form-control" type="number" name="fremitus" placeholder="fremitus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>Stahli's line</p>
+                        <input  class="form-control" type="number" name="Stahli's line" placeholder="Stahli's line" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stinging sensation</p>
+                        <input  class="form-control" type="number" name="stinging sensation" placeholder="stinging sensation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>paralyse</p>
+                        <input  class="form-control" type="number" name="paralyse" placeholder="paralyse" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hirsutism</p>
+                        <input  class="form-control" type="number" name="hirsutism" placeholder="hirsutism" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sniffle</p>
+                        <input  class="form-control" type="number" name="sniffle" placeholder="sniffle" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bradykinesia</p>
+                        <input  class="form-control" type="number" name="bradykinesia" placeholder="bradykinesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>out of breath</p>
+                        <input  class="form-control" type="number" name="out of breath" placeholder="out of breath" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>urge incontinence</p>
+                        <input  class="form-control" type="number" name="urge incontinence" placeholder="urge incontinence" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>vision blurred</p>
+                        <input  class="form-control" type="number" name="vision blurred" placeholder="vision blurred" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>room spinning</p>
+                        <input  class="form-control" type="number" name="room spinning" placeholder="room spinning" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rambling speech</p>
+                        <input  class="form-control" type="number" name="rambling speech" placeholder="rambling speech" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>clumsiness</p>
+                        <input  class="form-control" type="number" name="clumsiness" placeholder="clumsiness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>decreased stool caliber</p>
+                        <input  class="form-control" type="number" name="decreased stool caliber" placeholder="decreased stool caliber" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hematochezia</p>
+                        <input  class="form-control" type="number" name="hematochezia" placeholder="hematochezia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>egophony</p>
+                        <input  class="form-control" type="number" name="egophony" placeholder="egophony" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>scar tissue</p>
+                        <input  class="form-control" type="number" name="scar tissue" placeholder="scar tissue" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>neologism</p>
+                        <input  class="form-control" type="number" name="neologism" placeholder="neologism" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>decompensation</p>
+                        <input  class="form-control" type="number" name="decompensation" placeholder="decompensation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stool color yellow</p>
+                        <input  class="form-control" type="number" name="stool color yellow" placeholder="stool color yellow" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rigor - temperature-associated observation</p>
+                        <input  class="form-control" type="number" name="rigor - temperature-associated observation" placeholder="rigor - temperature-associated observation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>paraparesis</p>
+                        <input  class="form-control" type="number" name="paraparesis" placeholder="paraparesis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>moody</p>
+                        <input  class="form-control" type="number" name="moody" placeholder="moody" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fear of falling</p>
+                        <input  class="form-control" type="number" name="fear of falling" placeholder="fear of falling" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>spasm</p>
+                        <input  class="form-control" type="number" name="spasm" placeholder="spasm" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyperventilation</p>
+                        <input  class="form-control" type="number" name="hyperventilation" placeholder="hyperventilation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>excruciating pain</p>
+                        <input  class="form-control" type="number" name="excruciating pain" placeholder="excruciating pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>gag</p>
+                        <input  class="form-control" type="number" name="gag" placeholder="gag" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>posturing</p>
+                        <input  class="form-control" type="number" name="posturing" placeholder="posturing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pulse absent</p>
+                        <input  class="form-control" type="number" name="pulse absent" placeholder="pulse absent" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dysesthesia</p>
+                        <input  class="form-control" type="number" name="dysesthesia" placeholder="dysesthesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>polymyalgia</p>
+                        <input  class="form-control" type="number" name="polymyalgia" placeholder="polymyalgia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>passed stones</p>
+                        <input  class="form-control" type="number" name="passed stones" placeholder="passed stones" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>qt interval prolonged</p>
+                        <input  class="form-control" type="number" name="qt interval prolonged" placeholder="qt interval prolonged" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>ataxia</p>
+                        <input  class="form-control" type="number" name="ataxia" placeholder="ataxia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>Heberden's node</p>
+                        <input  class="form-control" type="number" name="Heberden's node" placeholder="Heberden's node" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hepatomegaly</p>
+                        <input  class="form-control" type="number" name="hepatomegaly" placeholder="hepatomegaly" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sciatica</p>
+                        <input  class="form-control" type="number" name="sciatica" placeholder="sciatica" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>frothy sputum</p>
+                        <input  class="form-control" type="number" name="frothy sputum" placeholder="frothy sputum" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mass in breast</p>
+                        <input  class="form-control" type="number" name="mass in breast" placeholder="mass in breast" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>retropulsion</p>
+                        <input  class="form-control" type="number" name="retropulsion" placeholder="retropulsion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>estrogen use</p>
+                        <input  class="form-control" type="number" name="estrogen use" placeholder="estrogen use" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypersomnolence</p>
+                        <input  class="form-control" type="number" name="hypersomnolence" placeholder="hypersomnolence" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>underweight</p>
+                        <input  class="form-control" type="number" name="underweight" placeholder="underweight" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dullness</p>
+                        <input  class="form-control" type="number" name="dullness" placeholder="dullness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>red blotches</p>
+                        <input  class="form-control" type="number" name="red blotches" placeholder="red blotches" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>colic abdominal</p>
+                        <input  class="form-control" type="number" name="colic abdominal" placeholder="colic abdominal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypokalemia</p>
+                        <input  class="form-control" type="number" name="hypokalemia" placeholder="hypokalemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hunger</p>
+                        <input  class="form-control" type="number" name="hunger" placeholder="hunger" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>prostate tender</p>
+                        <input  class="form-control" type="number" name="prostate tender" placeholder="prostate tender" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain foot</p>
+                        <input  class="form-control" type="number" name="pain foot" placeholder="pain foot" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>urinary hesitation</p>
+                        <input  class="form-control" type="number" name="urinary hesitation" placeholder="urinary hesitation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>disequilibrium</p>
+                        <input  class="form-control" type="number" name="disequilibrium" placeholder="disequilibrium" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>flushing</p>
+                        <input  class="form-control" type="number" name="flushing" placeholder="flushing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>indifferent mood</p>
+                        <input  class="form-control" type="number" name="indifferent mood" placeholder="indifferent mood" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>urinoma</p>
+                        <input  class="form-control" type="number" name="urinoma" placeholder="urinoma" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypoalbuminemia</p>
+                        <input  class="form-control" type="number" name="hypoalbuminemia" placeholder="hypoalbuminemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pustule</p>
+                        <input  class="form-control" type="number" name="pustule" placeholder="pustule" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>slowing of urinary stream</p>
+                        <input  class="form-control" type="number" name="slowing of urinary stream" placeholder="slowing of urinary stream" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>extreme exhaustion</p>
+                        <input  class="form-control" type="number" name="extreme exhaustion" placeholder="extreme exhaustion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>no status change</p>
+                        <input  class="form-control" type="number" name="no status change" placeholder="no status change" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>breakthrough pain</p>
+                        <input  class="form-control" type="number" name="breakthrough pain" placeholder="breakthrough pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pansystolic murmur</p>
+                        <input  class="form-control" type="number" name="pansystolic murmur" placeholder="pansystolic murmur" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>systolic ejection murmur</p>
+                        <input  class="form-control" type="number" name="systolic ejection murmur" placeholder="systolic ejection murmur" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>stuffy nose</p>
+                        <input  class="form-control" type="number" name="stuffy nose" placeholder="stuffy nose" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>barking cough</p>
+                        <input  class="form-control" type="number" name="barking cough" placeholder="barking cough" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rapid shallow breathing</p>
+                        <input  class="form-control" type="number" name="rapid shallow breathing" placeholder="rapid shallow breathing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>noisy respiration</p>
+                        <input  class="form-control" type="number" name="noisy respiration" placeholder="noisy respiration" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nasal discharge present</p>
+                        <input  class="form-control" type="number" name="nasal discharge present" placeholder="nasal discharge present" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>frail</p>
+                        <input  class="form-control" type="number" name="frail" placeholder="frail" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cystic lesion</p>
+                        <input  class="form-control" type="number" name="cystic lesion" placeholder="cystic lesion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>projectile vomiting</p>
+                        <input  class="form-control" type="number" name="projectile vomiting" placeholder="projectile vomiting" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>heavy legs</p>
+                        <input  class="form-control" type="number" name="heavy legs" placeholder="heavy legs" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>titubation</p>
+                        <input  class="form-control" type="number" name="titubation" placeholder="titubation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dysdiadochokinesia</p>
+                        <input  class="form-control" type="number" name="dysdiadochokinesia" placeholder="dysdiadochokinesia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>achalasia</p>
+                        <input  class="form-control" type="number" name="achalasia" placeholder="achalasia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>side pain</p>
+                        <input  class="form-control" type="number" name="side pain" placeholder="side pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>monocytosis</p>
+                        <input  class="form-control" type="number" name="monocytosis" placeholder="monocytosis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>posterior rhinorrhea</p>
+                        <input  class="form-control" type="number" name="posterior rhinorrhea" placeholder="posterior rhinorrhea" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>incoherent</p>
+                        <input  class="form-control" type="number" name="incoherent" placeholder="incoherent" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lameness</p>
+                        <input  class="form-control" type="number" name="lameness" placeholder="lameness" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>claudication</p>
+                        <input  class="form-control" type="number" name="claudication" placeholder="claudication" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>clammy skin</p>
+                        <input  class="form-control" type="number" name="clammy skin" placeholder="clammy skin" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>mediastinal shift</p>
+                        <input  class="form-control" type="number" name="mediastinal shift" placeholder="mediastinal shift" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nausea and vomiting</p>
+                        <input  class="form-control" type="number" name="nausea and vomiting" placeholder="nausea and vomiting" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>awakening early</p>
+                        <input  class="form-control" type="number" name="awakening early" placeholder="awakening early" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tenesmus</p>
+                        <input  class="form-control" type="number" name="tenesmus" placeholder="tenesmus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fecaluria</p>
+                        <input  class="form-control" type="number" name="fecaluria" placeholder="fecaluria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pneumatouria</p>
+                        <input  class="form-control" type="number" name="pneumatouria" placeholder="pneumatouria" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>todd paralysis</p>
+                        <input  class="form-control" type="number" name="todd paralysis" placeholder="todd paralysis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>alcoholic withdrawal symptoms</p>
+                        <input  class="form-control" type="number" name="alcoholic withdrawal symptoms" placeholder="alcoholic withdrawal symptoms" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>myalgia</p>
+                        <input  class="form-control" type="number" name="myalgia" placeholder="myalgia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dyspareunia</p>
+                        <input  class="form-control" type="number" name="dyspareunia" placeholder="dyspareunia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>poor dentition</p>
+                        <input  class="form-control" type="number" name="poor dentition" placeholder="poor dentition" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>floppy</p>
+                        <input  class="form-control" type="number" name="floppy" placeholder="floppy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>inappropriate affect</p>
+                        <input  class="form-control" type="number" name="inappropriate affect" placeholder="inappropriate affect" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>poor feeding</p>
+                        <input  class="form-control" type="number" name="poor feeding" placeholder="poor feeding" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>moan</p>
+                        <input  class="form-control" type="number" name="moan" placeholder="moan" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>welt</p>
+                        <input  class="form-control" type="number" name="welt" placeholder="welt" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tinnitus</p>
+                        <input  class="form-control" type="number" name="tinnitus" placeholder="tinnitus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hydropneumothorax</p>
+                        <input  class="form-control" type="number" name="hydropneumothorax" placeholder="hydropneumothorax" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>superimposition</p>
+                        <input  class="form-control" type="number" name="superimposition" placeholder="superimposition" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>feeling strange</p>
+                        <input  class="form-control" type="number" name="feeling strange" placeholder="feeling strange" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>uncoordination</p>
+                        <input  class="form-control" type="number" name="uncoordination" placeholder="uncoordination" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>absences finding</p>
+                        <input  class="form-control" type="number" name="absences finding" placeholder="absences finding" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tonic seizures</p>
+                        <input  class="form-control" type="number" name="tonic seizures" placeholder="tonic seizures" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>debilitation</p>
+                        <input  class="form-control" type="number" name="debilitation" placeholder="debilitation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>impaired cognition</p>
+                        <input  class="form-control" type="number" name="impaired cognition" placeholder="impaired cognition" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>drool</p>
+                        <input  class="form-control" type="number" name="drool" placeholder="drool" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pin-point pupils</p>
+                        <input  class="form-control" type="number" name="pin-point pupils" placeholder="pin-point pupils" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>tremor resting</p>
+                        <input  class="form-control" type="number" name="tremor resting" placeholder="tremor resting" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>groggy</p>
+                        <input  class="form-control" type="number" name="groggy" placeholder="groggy" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>adverse reaction</p>
+                        <input  class="form-control" type="number" name="adverse reaction" placeholder="adverse reaction" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>adverse effect</p>
+                        <input  class="form-control" type="number" name="adverse effect" placeholder="adverse effect" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abdominal bloating</p>
+                        <input  class="form-control" type="number" name="abdominal bloating" placeholder="abdominal bloating" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>fatigability</p>
+                        <input  class="form-control" type="number" name="fatigability" placeholder="fatigability" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>para 2</p>
+                        <input  class="form-control" type="number" name="para 2" placeholder="para 2" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abortion</p>
+                        <input  class="form-control" type="number" name="abortion" placeholder="abortion" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>intermenstrual heavy bleeding</p>
+                        <input  class="form-control" type="number" name="intermenstrual heavy bleeding" placeholder="intermenstrual heavy bleeding" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>previous pregnancies 2</p>
+                        <input  class="form-control" type="number" name="previous pregnancies 2" placeholder="previous pregnancies 2" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>primigravida</p>
+                        <input  class="form-control" type="number" name="primigravida" placeholder="primigravida" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abnormally hard consistency</p>
+                        <input  class="form-control" type="number" name="abnormally hard consistency" placeholder="abnormally hard consistency" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>proteinemia</p>
+                        <input  class="form-control" type="number" name="proteinemia" placeholder="proteinemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pain neck</p>
+                        <input  class="form-control" type="number" name="pain neck" placeholder="pain neck" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>dizzy spells</p>
+                        <input  class="form-control" type="number" name="dizzy spells" placeholder="dizzy spells" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>shooting pain</p>
+                        <input  class="form-control" type="number" name="shooting pain" placeholder="shooting pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hyperemesis</p>
+                        <input  class="form-control" type="number" name="hyperemesis" placeholder="hyperemesis" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>milky</p>
+                        <input  class="form-control" type="number" name="milky" placeholder="milky" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>regurgitates after swallowing</p>
+                        <input  class="form-control" type="number" name="regurgitates after swallowing" placeholder="regurgitates after swallowing" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>lip smacking</p>
+                        <input  class="form-control" type="number" name="lip smacking" placeholder="lip smacking" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>phonophobia</p>
+                        <input  class="form-control" type="number" name="phonophobia" placeholder="phonophobia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rolling of eyes</p>
+                        <input  class="form-control" type="number" name="rolling of eyes" placeholder="rolling of eyes" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>ambidexterity</p>
+                        <input  class="form-control" type="number" name="ambidexterity" placeholder="ambidexterity" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pulsus paradoxus</p>
+                        <input  class="form-control" type="number" name="pulsus paradoxus" placeholder="pulsus paradoxus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>gravida 10</p>
+                        <input  class="form-control" type="number" name="gravida 10" placeholder="gravida 10" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bruit</p>
+                        <input  class="form-control" type="number" name="bruit" placeholder="bruit" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>breath-holding spell</p>
+                        <input  class="form-control" type="number" name="breath-holding spell" placeholder="breath-holding spell" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>scleral icterus</p>
+                        <input  class="form-control" type="number" name="scleral icterus" placeholder="scleral icterus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>retch</p>
+                        <input  class="form-control" type="number" name="retch" placeholder="retch" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>blanch</p>
+                        <input  class="form-control" type="number" name="blanch" placeholder="blanch" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>elation</p>
+                        <input  class="form-control" type="number" name="elation" placeholder="elation" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>verbally abusive behavior</p>
+                        <input  class="form-control" type="number" name="verbally abusive behavior" placeholder="verbally abusive behavior" value="0" required="required" />
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sexual</p>
+                        <input  class="form-control" type="number" name="transsexual" placeholder="transsexual" value="0" required="required" />
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>behavior showing increased motor activity</p>
+                        <input  class="form-control" type="number" name="behavior showing increased motor activity" placeholder="behavior showing increased motor activity" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>coordination abnormal</p>
+                        <input  class="form-control" type="number" name="coordination abnormal" placeholder="coordination abnormal" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>choke</p>
+                        <input  class="form-control" type="number" name="choke" placeholder="choke" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>bowel sounds decreased</p>
+                        <input  class="form-control" type="number" name="bowel sounds decreased" placeholder="bowel sounds decreased" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>no known drug allergies</p>
+                        <input  class="form-control" type="number" name="no known drug allergies" placeholder="no known drug allergies" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>low back pain</p>
+                        <input  class="form-control" type="number" name="low back pain" placeholder="low back pain" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>charleyhorse</p>
+                        <input  class="form-control" type="number" name="charleyhorse" placeholder="charleyhorse" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sedentary</p>
+                        <input  class="form-control" type="number" name="sedentary" placeholder="sedentary" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>feels hot/feverish</p>
+                        <input  class="form-control" type="number" name="feels hot/feverish" placeholder="feels hot/feverish" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>flare</p>
+                        <input  class="form-control" type="number" name="flare" placeholder="flare" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>pericardial friction rub</p>
+                        <input  class="form-control" type="number" name="pericardial friction rub" placeholder="pericardial friction rub" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hoard</p>
+                        <input  class="form-control" type="number" name="hoard" placeholder="hoard" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>panic</p>
+                        <input  class="form-control" type="number" name="panic" placeholder="panic" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cardiovascular finding</p>
+                        <input  class="form-control" type="number" name="cardiovascular finding" placeholder="cardiovascular finding" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>cardiovascular event</p>
+                        <input  class="form-control" type="number" name="cardiovascular event" placeholder="cardiovascular event" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>soft tissue swelling</p>
+                        <input  class="form-control" type="number" name="soft tissue swelling" placeholder="soft tissue swelling" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>rhd positive</p>
+                        <input  class="form-control" type="number" name="rhd positive" placeholder="rhd positive" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>para 1</p>
+                        <input  class="form-control" type="number" name="para 1" placeholder="para 1" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>nasal flaring</p>
+                        <input  class="form-control" type="number" name="nasal flaring" placeholder="nasal flaring" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>sneeze</p>
+                        <input  class="form-control" type="number" name="sneeze" placeholder="sneeze" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypertonicity</p>
+                        <input  class="form-control" type="number" name="hypertonicity" placeholder="hypertonicity" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>Murphy's sign</p>
+                        <input  class="form-control" type="number" name="Murphy's sign" placeholder="Murphy's sign" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>flatulence</p>
+                        <input  class="form-control" type="number" name="flatulence" placeholder="flatulence" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>gasping for breath</p>
+                        <input  class="form-control" type="number" name="gasping for breath" placeholder="gasping for breath" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>feces in rectum</p>
+                        <input  class="form-control" type="number" name="feces in rectum" placeholder="feces in rectum" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>prodrome</p>
+                        <input  class="form-control" type="number" name="prodrome" placeholder="prodrome" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>hypoproteinemia</p>
+                        <input  class="form-control" type="number" name="hypoproteinemia" placeholder="hypoproteinemia" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>alcohol binge episode</p>
+                        <input  class="form-control" type="number" name="alcohol binge episode" placeholder="alcohol binge episode" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>abdomen acute</p>
+                        <input  class="form-control" type="number" name="abdomen acute" placeholder="abdomen acute" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>air fluid level</p>
+                        <input  class="form-control" type="number" name="air fluid level" placeholder="air fluid level" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>catching breath</p>
+                        <input  class="form-control" type="number" name="catching breath" placeholder="catching breath" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>large-for-dates fetus</p>
+                        <input  class="form-control" type="number" name="large-for-dates fetus" placeholder="large-for-dates fetus" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>immobile</p>
+                        <input  class="form-control" type="number" name="immobile" placeholder="immobile" value="0" required="required" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <p>homicidal thoughts</p>
+                        <input  class="form-control" type="number" name="homicidal thoughts" placeholder="homicidal thoughts" value="0" required="required" />
+                    </div>
+                </div>
+
+
+                <!--      <div class="form-group">-->
+                <!--        <div class="col-sm-offset-2 col-sm-10">-->
+                <!--         <center><button type="submit" class="button btn btn-default">PREDICT</button></center>-->
+                <!--        </div>-->
+                <!--      </div>-->
+
+                <div>
+                    <center> <button form="form" onclick="location.href='/predict_api'">PREDICT</button></center>
+                </div>
+            </form>
+
+
+
+            <h2 class="result"></h2>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
