@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 """
 
 # Read Raw Dataset
-df = pd.read_excel('/Users/shradhasrivastava/Desktop/raw_data.xlsx')
+df = pd.read_excel('/Users/shradhasrivastava/flask_auth_app/project/raw_data.xlsx')
 data = df.fillna(method='ffill')
 
 """Data preprocessing"""
@@ -128,7 +128,7 @@ df_concat[:5]
 
 len(df_concat)
 
-df_concat.to_csv("/Users/shradhasrivastava/Desktop/training_data.csv", index=False)
+df_concat.to_csv("/Users/shradhasrivastava/flask_auth_app/project/training_data.csv", index=False)
 
 X = df_concat[cols]
 
